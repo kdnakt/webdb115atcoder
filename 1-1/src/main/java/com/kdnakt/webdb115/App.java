@@ -12,10 +12,7 @@ public class App {
         int N = cin.nextInt();
         for (int i = 0; i < N; i++) {
             int A = cin.nextInt();
-            long ans = 0;
-            for (int j = 1; j <= A; j++) {
-                ans += j;
-            }
+            long ans = (long) A * (A + 1) / 2;
             System.out.println(ans);
         }
         System.out.println(System.currentTimeMillis() - start + " ms");
