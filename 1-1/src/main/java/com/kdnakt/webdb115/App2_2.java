@@ -12,35 +12,17 @@ public class App2_2 {
         int N = cin.nextInt();
         int[] A = new int[N];
         for (int i = 0; i < N; i++) A[i] = cin.nextInt();
-        int Same = checkSame(N, A);
-        int No = checkNo(N, A);
+        int[] B = new int[N + 1];
+        for (int i = 0; i < N; i++) B[A[i]]++;
+        int Same = -1, No = -1;
+        for (int i = 1; i <= N; i++) {
+            if (B[i] == 0) No = i;
+            if (B[i] == 2) Same = i;
+        }
         if (Same == -1) System.out.println("CORRECT");
         else System.out.println(Same + " " + No);
         System.out.println(System.currentTimeMillis() - start + " ms");
         cin.close();
-    }
-
-    static int checkSame(int N, int[] A) {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < i; j++) {
-                if (A[i] == A[j]) return A[i];
-            }
-        }
-        return -1;
-    }
-
-    static int checkNo(int N, int[] A) {
-        for (int i = 1; i <= N; i++) {
-            boolean exist = false;
-            for (int j = 0; j < N; j++) {
-                if (A[j] == i) {
-                    exist = true;
-                    break;
-                }
-            }
-            if (!exist) return i;
-        }
-        return -1;
     }
 
 }
