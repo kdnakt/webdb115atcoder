@@ -8,6 +8,7 @@ public class App {
     public static void main(String[] args) throws FileNotFoundException {
         InputStream in = App.class.getClassLoader().getResourceAsStream("input");
         Scanner cin = new Scanner(in);
+        long start = System.currentTimeMillis();
         int N = cin.nextInt();
         for (int i = 0; i < N; i++) {
             int A = cin.nextInt();
@@ -17,6 +18,7 @@ public class App {
             }
             System.out.println(ans);
         }
+        System.out.println(System.currentTimeMillis() - start + " ms");
         cin.close();
     }
 }
