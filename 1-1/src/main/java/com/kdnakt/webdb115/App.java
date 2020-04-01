@@ -12,7 +12,7 @@ public class App {
         for (int i = 0; i < N; i++) {
             int A = cin.nextInt();
             long ans = 0;
-            for (int j = 0; j < A; j++) {
+            for (int j = 1; j <= A; j++) {
                 ans += j;
             }
             System.out.println(ans);
