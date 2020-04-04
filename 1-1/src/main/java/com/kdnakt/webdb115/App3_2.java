@@ -15,7 +15,7 @@ public class App3_2 {
             int N = cin.nextInt();
             int Y = cin.nextInt();
             for (int A = 0; A <= N; A++) {
-                for (int B = 0; A + B <= N; B++) {
+                for (int B = 0; B <= Math.min(N - A, 8); B++) {
                     int C = N - A - B;
                     int money = 10000 * A + 5000 * B + 1000 * C;
                     if (money == Y) {
