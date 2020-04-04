@@ -15,14 +15,12 @@ public class App3_2 {
             int N = cin.nextInt();
             int Y = cin.nextInt();
             for (int A = 0; A <= N; A++) {
-                for (int B = 0; B <= N; B++) {
-                    for (int C = 0; C <= N; C++) {
-                        int num = A + B + C;
-                        int money = 10000 * A + 5000 * B + 1000 * C;
-                        if (num == N && money == Y) {
-                            System.out.println(A + " " + B + " " + C);
-                            return;
-                        }
+                for (int B = 0; A + B <= N; B++) {
+                    int C = N - A - B;
+                    int money = 10000 * A + 5000 * B + 1000 * C;
+                    if (money == Y) {
+                        System.out.println(A + " " + B + " " + C);
+                        return;
                     }
                 }
             }
