@@ -69,53 +69,55 @@ public class App3_C {
                 System.out.println("NO");
             }
             System.out.println(System.currentTimeMillis() - start + " ms");
+        } catch (IllegalStateException e) {
+            System.out.println("NO");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private static boolean checkEast(Position pos, Position[] positions, int len, int count) {
-        if (count == 5) return true;
+        if (count == 10) throw new IllegalStateException();;
         for (int i = 0; i < len; i++) {
             if (pos.i == positions[i].i
                     && pos.j+1 == positions[i].j) {
                 return checkEast(positions[i], positions, len, count + 1);
             }
         }
-        return false;
+        return count >= 5;
     }
 
     private static boolean checkSouth(Position pos, Position[] positions, int len, int count) {
-        if (count == 5) return true;
+        if (count == 10) throw new IllegalStateException();
         for (int i = 0; i < len; i++) {
             if (pos.i+1 == positions[i].i
                     && pos.j == positions[i].j) {
                 return checkSouth(positions[i], positions, len, count + 1);
             }
         }
-        return false;
+        return count >= 5;
     }
 
     private static boolean checkSouthEast(Position pos, Position[] positions, int len, int count) {
-        if (count == 5) return true; 
+        if (count == 10) throw new IllegalStateException();
         for (int i = 0; i < len; i++) {
             if (pos.i+1 == positions[i].i
                     && pos.j+1 == positions[i].j) {
                 return checkSouthEast(positions[i], positions, len, count + 1);
             }
         }
-        return false;
+        return count >= 5;
     }
 
     private static boolean checkNorthEast(Position pos, Position[] positions, int len, int count) {
-        if (count == 5) return true;
+        if (count == 10) throw new IllegalStateException();
         for (int i = 0; i < len; i++) {
             if (pos.i-1 == positions[i].i
                     && pos.j-1 == positions[i].j) {
                 return checkNorthEast(positions[i], positions, len, count + 1);
             }
         }
-        return false;
+        return count >= 5;
     }
 
 }
