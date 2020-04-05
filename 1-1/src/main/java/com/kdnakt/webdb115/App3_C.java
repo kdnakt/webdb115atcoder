@@ -60,7 +60,7 @@ public class App3_C {
                     System.out.println("NO");
                     return;
                 }
-                if (isBlackWin && BLACK_COUNT >= WHITE_COUNT) {
+                if (isBlackWin && BLACK_COUNT <= WHITE_COUNT) {
                     System.out.println("NO");
                     return;
                 }
