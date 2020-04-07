@@ -17,7 +17,7 @@ public class App4_1 {
             int K = cin.nextInt();
             int ans = 1;
             for (int i = 0; i < N; i++) {
-                ans = operate(ans, K);
+                ans = Math.min(ans * 2, ans + K);
             }
             System.out.println(ans);
             System.out.println(System.currentTimeMillis() - start + " ms");
@@ -26,9 +26,4 @@ public class App4_1 {
         }
     }
 
-    static int operate(int ans, int K) {
-        int resA = ans * 2;
-        int resB = ans + K;
-        return resA < resB ? resA : resB;
-    }
 }
