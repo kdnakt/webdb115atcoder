@@ -3,6 +3,7 @@ package com.kdnakt.webdb115;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class App4_2 {
@@ -16,12 +17,13 @@ public class App4_2 {
             int N = cin.nextInt();
             int[] A = new int[N];
             int[] B = new int[N];
+            Work[] W = new Work[N];
             for (int i = 0; i < N; i++) {
                 A[i] = cin.nextInt();
                 B[i] = cin.nextInt();
+                W[i] = new Work(A[i], B[i]);
             }
-            boolean[] used = new boolean[N];
-            if (dfs(0, N, A, B, used, 0)) {
+            if (solve(N, W)) {
                 System.out.println("Yes");
             } else {
                 System.out.println("No");
@@ -32,19 +34,25 @@ public class App4_2 {
         }
     }
 
-    static boolean dfs(int depth, int N, int[] A,
-            int[] B, boolean[] used, int time) {
-        if (depth == N) return true;
-        for (int i = 0; i < N; i++) {
-            if (used[i]) continue;
-            int nextTime = time + A[i];
-            if (nextTime > B[i]) return false;
-            used[i] = true;
-            if (dfs(depth+1, N, A, B, used, nextTime)) {
-                return true;
-            }
-            used[i] = false;
+    static class Work implements Comparable<Work> {
+        public int A, B;
+        public Work(int A, int B) {
+            this.A = A;
+            this.B = B;
         }
-        return false;
+        @Override
+        public int compareTo(Work w) {
+            return this.B - w.B;
+        }
+    }
+
+    static boolean solve(int N, Work[] W) {
+        Arrays.sort(W);
+        int time = 0;
+        for (Work w: W) {
+            time += w.A;
+            if (time > w.B) return false;
+        }
+        return true;
     }
 }
