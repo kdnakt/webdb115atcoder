@@ -9,6 +9,7 @@ public class App5_1 {
 
     static int N;
     static int[] H;
+    static int[] dp;
     public static void main(String[] args) throws FileNotFoundException {
         try (
             InputStream in = App5_1.class.getClassLoader().getResourceAsStream("input5_1");
@@ -17,22 +18,24 @@ public class App5_1 {
             long start = System.currentTimeMillis();
             N = cin.nextInt();
             H = new int[N+1];
+            dp = new int[N];
             for (int i = 0; i < N; i++) {
                 H[i] = cin.nextInt();
+                dp[i] = -1;
             }
-            int[] dp = new int[N];
-            dp[0] = 0;
-            dp[1] = Math.abs(H[1] - H[0]);
-            for (int i = 2; i < N; i++) {
-                int step1 = dp[i-1] + Math.abs(H[i] - H[i-1]);
-                int step2 = dp[i-2] + Math.abs(H[i] - H[i-2]);
-                dp[i] = Math.min(step1, step2);
-            }
-            System.out.println(dp[N-1]);
+            System.out.println(dfs(0));
             System.out.println(System.currentTimeMillis() - start + " ms");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    static int dfs(int pos) {
+        if (pos >= N) return 99999999;
+        if (pos == N-1) return 0;
+        if (dp[pos] != -1) return dp[pos];
+        int step1 = dfs(pos+1) + Math.abs(H[pos+1] - H[pos]);
+        int step2 = dfs(pos+2) + Math.abs(H[pos+2] - H[pos]);
+        return dp[pos] = Math.min(step1, step2);
+    }
 }
