@@ -20,19 +20,19 @@ public class App5_1 {
             for (int i = 0; i < N; i++) {
                 H[i] = cin.nextInt();
             }
-            System.out.println(dfs(0));
+            int[] dp = new int[N];
+            dp[0] = 0;
+            dp[1] = Math.abs(H[1] - H[0]);
+            for (int i = 2; i < N; i++) {
+                int step1 = dp[i-1] + Math.abs(H[i] - H[i-1]);
+                int step2 = dp[i-2] + Math.abs(H[i] - H[i-2]);
+                dp[i] = Math.min(step1, step2);
+            }
+            System.out.println(dp[N-1]);
             System.out.println(System.currentTimeMillis() - start + " ms");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    static int dfs(int pos) {
-        if (pos >= N) return 99999999;
-        if (pos == N-1) return 0;
-        int step1 = dfs(pos+1) + Math.abs(H[pos+1]-H[pos]);
-        int step2 = dfs(pos+2) + Math.abs(H[pos+2]-H[pos]);
-        return Math.min(step1, step2);
     }
 
 }
